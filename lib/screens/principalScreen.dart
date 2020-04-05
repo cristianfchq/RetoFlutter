@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:telegram_design/screens/nuevoChatSecreto.dart';
 
 class PrincipalScreen extends StatefulWidget {
   @override
@@ -192,6 +191,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
             break;
 
           case "Nuevo chat secreto":
+            Navigator.of(context).pushNamed("nuevoChatSecreto", arguments: argumentos);
             break;
 
           case "Nuevo canal":
@@ -219,6 +219,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
             {
               print("no hay esa opcion");
             }
+            Navigator.of(context).pushNamed("/",);
             break;
         }
         

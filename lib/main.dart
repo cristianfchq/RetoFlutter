@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telegram_design/screens/principalScreen.dart';
+import 'package:telegram_design/screens/screenNuevoChatSecreto.dart';
 import 'package:telegram_design/screens/screenNuevoGrupo.dart';
 
 void main() => runApp(MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (BuildContext) => PrincipalScreen(),
         "nuevoGrupo": (BuildContext) => ScreenNuevoGrupo(),
+        "nuevoChatSecreto": (BuildContext) => ScreenNuevoChatSecreto(),
       },
     );
   }
