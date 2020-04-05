@@ -21,27 +21,33 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
       child: ListView(
         children: <Widget>[
           // _myListOfTelegram("rutaImage","nombreGrupo o nombreContacto","nombreUsuario y mensaje(dividirlo en dos)","hora","cantidad mendajes no leidos"),
-          _myListOfTelegram("assets/img/telegram.png", "Telegram", "Mensaje de tele...", "20:33", 10),
+          _myListOfTelegram("assets/img/telegram.png", "Telegram",
+              "Mensaje de tele...", "20:33", 10),
           _myDivider(),
-          _myListOfTelegram("assets/img/flutter.png", "Flutter - Dart Español", "Mensaje de tele...", "20:33", 10),
+          _myListOfTelegram("assets/img/flutter.png", "Flutter - Dart Español",
+              "Mensaje de tele...", "20:33", 10),
           _myDivider(),
-          _myListOfTelegram("assets/img/stan_lee.jpg", "Stan Lee", "Mensaje de Stan Lee...", "20:33", 10),
+          _myListOfTelegram("assets/img/stan_lee.jpg", "Stan Lee",
+              "Mensaje de Stan Lee...", "20:33", 10),
           _myDivider(),
-
-          _myListOfTelegram("assets/img/black_widow.jpg", "Black Widow", "Mensaje de black widow...", "20:33", 10),
+          _myListOfTelegram("assets/img/black_widow.jpg", "Black Widow",
+              "Mensaje de black widow...", "20:33", 10),
           _myDivider(),
-
-          _myListOfTelegram("assets/img/brus_banner.jpg", "Bruss Banner", "Mensaje de Bruss Banner...", "20:33", 10),
+          _myListOfTelegram("assets/img/brus_banner.jpg", "Bruss Banner",
+              "Mensaje de Bruss Banner...", "20:33", 10),
           _myDivider(),
-          _myListOfTelegram("assets/img/capitan_america.jpg", "Capitan America", "Mensaje de Capitan America...", "20:33", 10),
+          _myListOfTelegram("assets/img/capitan_america.jpg", "Capitan America",
+              "Mensaje de Capitan America...", "20:33", 10),
           _myDivider(),
-          _myListOfTelegram("assets/img/clint_barton.jpg", "Clint Barton", "Mensaje de Clint Barton...", "20:33", 10),
+          _myListOfTelegram("assets/img/clint_barton.jpg", "Clint Barton",
+              "Mensaje de Clint Barton...", "20:33", 10),
           _myDivider(),
-          _myListOfTelegram("assets/img/iron_man.jpg", "Iron Man", "Mensaje de Iron Man...", "20:33", 10),
+          _myListOfTelegram("assets/img/iron_man.jpg", "Iron Man",
+              "Mensaje de Iron Man...", "20:33", 10),
           _myDivider(),
-          _myListOfTelegram("assets/img/thor.jpg", "Thor", "Mensaje de Thor...", "20:33", 10),
+          _myListOfTelegram(
+              "assets/img/thor.jpg", "Thor", "Mensaje de Thor...", "20:33", 10),
           _myDivider(),
-
         ],
       ),
     );
@@ -65,7 +71,8 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
     );
   }
 
-  Widget _myListOfTelegram(String rutaImagen, String nombreTitulo, String mensaje, String hora, int cantidadMensajes) {
+  Widget _myListOfTelegram(String rutaImagen, String nombreTitulo,
+      String mensaje, String hora, int cantidadMensajes) {
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
       child: Container(
@@ -97,7 +104,8 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
     );
   }
 
-  Widget _nameAndTime(String nombreTitulo, String mensaje, String hora, int cantidadMensajes) {
+  Widget _nameAndTime(
+      String nombreTitulo, String mensaje, String hora, int cantidadMensajes) {
     return Container(
       width: MediaQuery.of(context).size.width - 20 - 66,
       height: 50,
@@ -131,10 +139,51 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
   }
 
   Widget _myDrawer() {
+    return Drawer(
+      child: ListView(
+        children: <Widget>[
+          _headDrawer(),
+          _body1Drawer(),
+        ],
+      ),
+    );
+  }
+
+  Widget _body1Drawer(){
     return Container(
-      height: 200,
-      width: 100,
-      color: Colors.white,
+      height: 30,
+      color: Colors.red,
+    );
+  }
+
+  Widget _headDrawer() {
+    return UserAccountsDrawerHeader(
+      accountName: Text("Cristian Choque"),
+      accountEmail: Padding(
+        padding: const EdgeInsets.only(right: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text("+591 (7)194-6895"),
+            Icon(Icons.expand_more, size: 33, color: Colors.white)
+          ],
+        ),
+      ),
+      currentAccountPicture: CircleAvatar(
+        backgroundColor: Color(0xFF2277AA),
+        child: Text(
+          "CC",
+          style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500),
+        ),
+      ),
+      otherAccountsPictures: <Widget>[
+        Container(
+          child: Icon(Icons.brightness_2, color: Colors.white),
+        ),
+      ],
+      decoration: BoxDecoration(
+        color: Color(0xFF0088CC),
+      ),
     );
   }
 
