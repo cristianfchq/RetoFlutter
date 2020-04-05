@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:telegram_design/screens/nuevoChatSecreto.dart';
 
 class PrincipalScreen extends StatefulWidget {
   @override
@@ -81,6 +82,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
         // color: Colors.red,
         child: Row(
           children: <Widget>[
+            
             _image(rutaImagen),
             _nameAndTime(nombreTitulo, mensaje, hora, cantidadMensajes),
           ],
@@ -174,9 +176,18 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
   }
 
   Widget _partBody2(IconData icono, String texto) {
+
+    var argumentos = {
+      "dato1": " ",
+      // "dato2": 85,
+      // "dato3": 1,
+    };
+
     return InkWell(
       onTap: (){
         print("pessed ${texto}");
+        argumentos['dato1'] = texto;
+        Navigator.of(context).pushNamed("nuevoGrupo", arguments: argumentos);
       },
       child: Container(
         child: Padding(

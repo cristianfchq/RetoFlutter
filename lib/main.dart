@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telegram_design/screens/principalScreen.dart';
+import 'package:telegram_design/screens/screenNuevoGrupo.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +14,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PrincipalScreen(),
+      // home: PrincipalScreen(),
+      initialRoute: "/",
+      routes: {
+        "/": (BuildContext) => PrincipalScreen(),
+        "nuevoGrupo": (BuildContext) => ScreenNuevoGrupo(),
+      },
     );
   }
 }
