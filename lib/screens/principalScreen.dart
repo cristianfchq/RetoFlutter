@@ -138,22 +138,77 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
     );
   }
 
+//! Drawer
+
   Widget _myDrawer() {
     return Drawer(
       child: ListView(
         children: <Widget>[
           _headDrawer(),
           _body1Drawer(),
+          _body2Drawer(),
         ],
       ),
     );
   }
 
-  Widget _body1Drawer(){
+  Widget _body2Drawer() {
     return Container(
-      height: 30,
-      color: Colors.red,
+      // height: 30,
+      // color: Colors.red,
+      child: Column(
+        children: <Widget>[
+          _partBody2(Icons.people_outline, "Nuevo grupo"),
+          _partBody2(Icons.lock_outline, "Nuevo chat secreto"),
+          _partBody2(Icons.add_to_queue, "Nuevo canal"),
+          _partBody2(Icons.perm_identity, "Contactos"),
+          _partBody2(Icons.call, "Llamadas"),
+          _partBody2(Icons.bookmark_border, "Mensajes guardados"),
+          _partBody2(Icons.settings, "Ajustes"),
+          Divider(),
+          _partBody2(Icons.group_add, "Invitar amigos"),
+          _partBody2(Icons.help_outline, "Preguntas frecuentes"),
+        ],
+      ),
     );
+  }
+
+  Widget _partBody2(IconData icono, String texto) {
+    return InkWell(
+      onTap: (){
+        print("pessed ${texto}");
+      },
+      child: Container(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+          child: Row(
+            children: <Widget>[
+              Icon(
+                icono,
+                color: Colors.black38,
+                size: 28,
+              ),
+              SizedBox(
+                width: 30,
+              ),
+              Text(
+                texto,
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w700,),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _body1Drawer() {
+    return Container(
+        // height: 30,
+        // color: Colors.red,
+        );
   }
 
   Widget _headDrawer() {
@@ -186,6 +241,8 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
       ),
     );
   }
+
+//! disenio myAppBar
 
   Widget _myAppBar() {
     return AppBar(
