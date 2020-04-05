@@ -18,7 +18,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
 
   Widget _myBody() {
     return Container(
-      width: double.infinity,
+      // width: double.infinity,
       child: ListView(
         children: <Widget>[
           // _myListOfTelegram("rutaImage","nombreGrupo o nombreContacto","nombreUsuario y mensaje(dividirlo en dos)","hora","cantidad mendajes no leidos"),
