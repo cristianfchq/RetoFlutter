@@ -82,7 +82,6 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
         // color: Colors.red,
         child: Row(
           children: <Widget>[
-            
             _image(rutaImagen),
             _nameAndTime(nombreTitulo, mensaje, hora, cantidadMensajes),
           ],
@@ -175,19 +174,54 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
     );
   }
 
-  Widget _partBody2(IconData icono, String texto) {
-
+  Widget _partBody2(IconData icono, String titulo) {
     var argumentos = {
-      "dato1": " ",
+      "titulo": " ",
       // "dato2": 85,
       // "dato3": 1,
     };
 
     return InkWell(
-      onTap: (){
-        print("pessed ${texto}");
-        argumentos['dato1'] = texto;
-        Navigator.of(context).pushNamed("nuevoGrupo", arguments: argumentos);
+      onTap: () {
+        print("pessed ${titulo}");
+        argumentos['titulo'] = titulo;
+
+        switch (titulo) {
+          case "Nuevo grupo":
+            Navigator.of(context).pushNamed("nuevoGrupo", arguments: argumentos);
+            break;
+
+          case "Nuevo chat secreto":
+            break;
+
+          case "Nuevo canal":
+            break;
+
+          case "Contactos":
+            break;
+
+          case "Llamadas":
+            break;
+
+          case "Mensajes guardados":
+            break;
+
+          case "Ajustes":
+            break;
+
+          case "Invitar amigos":
+            break;
+
+          case "Preguntas frecuentes":
+            break;
+
+          default:
+            {
+              print("no hay esa opcion");
+            }
+            break;
+        }
+        
       },
       child: Container(
         child: Padding(
@@ -203,10 +237,11 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
                 width: 30,
               ),
               Text(
-                texto,
+                titulo,
                 style: TextStyle(
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w700,),
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),

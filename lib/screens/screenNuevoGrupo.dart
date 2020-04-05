@@ -10,7 +10,7 @@ class _ScreenNuevoGrupoState extends State<ScreenNuevoGrupo> {
   Widget build(BuildContext context) {
     final Map argumentos = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      appBar: _myAppBar(argumentos['dato1']),
+      appBar: _myAppBar(argumentos['titulo']),
       body: _myBody(),
     );
   }
