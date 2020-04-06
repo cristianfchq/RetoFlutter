@@ -6,12 +6,44 @@ class ScreenNuevoChatSecreto extends StatefulWidget {
 }
 
 class _ScreenNuevoChatSecretoState extends State<ScreenNuevoChatSecreto> {
+
+  bool _dark;
+
+  // @override
+  // void initState() { 
+  //   super.initState();
+  //   _dark = false;
+  // }
+
+  Brightness _getBrightness() {
+     return _dark ? Brightness.dark : Brightness.light;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final Map argumentos = ModalRoute.of(context).settings.arguments;
-    return Scaffold(
-      appBar: _myAppBar(argumentos['titulo']),
-      body: _myBody(),
+    bool _darkRecive = argumentos['themeTELEGRAM'];
+
+    setState(() {
+                  _dark = _darkRecive;
+                });
+
+
+    return Theme(
+
+      isMaterialAppTheme: true,
+      data: ThemeData(
+        brightness: _getBrightness(),
+      ),
+
+      child: Scaffold(
+
+        backgroundColor: _dark ? Color(0xFF31353F) : Colors.grey.shade200,
+
+        appBar: _myAppBar(argumentos['titulo']),
+        body: _myBody(),
+      ),
     );
   }
 
@@ -159,7 +191,7 @@ class _ScreenNuevoChatSecretoState extends State<ScreenNuevoChatSecreto> {
                 ),
                 Text(
                   mensaje,
-                  style: TextStyle(color: Colors.black54),
+                  style: TextStyle(color: _dark ?  Colors.white54 :Colors.black54,),
                 ),
               ],
             ),
@@ -180,7 +212,7 @@ class _ScreenNuevoChatSecretoState extends State<ScreenNuevoChatSecreto> {
 
   Widget _myAppBar(String titulo) {
     return AppBar(
-      backgroundColor: Color(0xFF0088CC),
+      backgroundColor: _dark ? Color(0xFF434E69) : Color(0xFF0088CC),//Color(0xFF0088CC),
       title: Text(titulo),
       actions: <Widget>[
         IconButton(
