@@ -33,6 +33,9 @@ class _ScreenNuevoCanalState extends State<ScreenNuevoCanal> {
         brightness: _getBrightness(),
       ),
       child: Scaffold(
+
+        backgroundColor: _dark ? Color(0xFF31353F) : Colors.grey.shade200,
+
         appBar: _myAppBar(argumentos['titulo']),
         body: _myBody(),
       ),

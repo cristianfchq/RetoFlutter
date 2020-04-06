@@ -6,12 +6,36 @@ class ScreenContatos extends StatefulWidget {
 }
 
 class _ScreenContatosState extends State<ScreenContatos> {
+  bool _dark;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _dark = false;
+  // }
+
+  Brightness _getBrightness() {
+    return _dark ? Brightness.dark : Brightness.light;
+  }
+
   @override
   Widget build(BuildContext context) {
     final Map argumentos = ModalRoute.of(context).settings.arguments;
-    return Scaffold(
-      appBar: _myAppBar(argumentos['titulo']),
-      body: _myBody(),
+    bool _darkRecive = argumentos['themeTELEGRAM'];
+
+    setState(() {
+      _dark = _darkRecive;
+    });
+    return Theme(
+      isMaterialAppTheme: true,
+      data: ThemeData(
+        brightness: _getBrightness(),
+      ),
+      child: Scaffold(
+        backgroundColor: _dark ? Color(0xFF31353F) : Colors.grey.shade200,
+        appBar: _myAppBar(argumentos['titulo']),
+        body: _myBody(),
+      ),
     );
   }
 
@@ -94,13 +118,17 @@ class _ScreenContatosState extends State<ScreenContatos> {
 
 //! the separation
 
-  Widget _separation(){
+  Widget _separation() {
     return Container(
       height: 30,
       color: Colors.black12,
       child: Padding(
         padding: const EdgeInsets.only(top: 8, left: 15),
-        child: Text("Ordenado por última vez", textAlign: TextAlign.start, style: TextStyle(fontSize: 14),),
+        child: Text(
+          "Ordenado por última vez",
+          textAlign: TextAlign.start,
+          style: TextStyle(fontSize: 14),
+        ),
       ),
     );
   }
@@ -125,23 +153,27 @@ class _ScreenContatosState extends State<ScreenContatos> {
     );
   }
 
-  Widget _icono(IconData icono){
+  Widget _icono(IconData icono) {
     return Container(
       // color: Colors.green,
       width: 50,
       height: 50,
       // width: MediaQuery.of(context).size.width * 25 / 100,
       child: CircleAvatar(
-        child: Icon(icono, color: Colors.black, size: 33.0,),
+        child: Icon(
+          icono,
+          color: _dark ? Colors.white70 : Colors.black87,//.grey.shade200,//Colors.black,
+          size: 33.0,
+        ),
         // radius: MediaQuery.of(context).size.width * 10 / 100,
         radius: 33.0,
-        backgroundColor: Colors.white,
+        backgroundColor: _dark ? Color(0xFF31353F) : Colors.grey.shade200,
       ),
     );
   }
 
   Widget _name(String nombreTitulo, String mensaje, String hora,
-      String cantidadMensajes){
+      String cantidadMensajes) {
     return Container(
       width: MediaQuery.of(context).size.width - 20 - 66,
       height: 50,
@@ -271,18 +303,24 @@ class _ScreenContatosState extends State<ScreenContatos> {
 
   Widget _myAppBar(String titulo) {
     return AppBar(
-      backgroundColor: Color(0xFF0088CC),
+      backgroundColor: _dark ? Color(0xFF434E69) : Color(0xFF0088CC),
       title: Text(titulo),
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.search, size: 30),
+          icon: Icon(
+            Icons.search,
+            size: 30,
+          ),
           onPressed: () {},
         ),
         SizedBox(
           width: 10,
         ),
         IconButton(
-          icon: Icon(Icons.playlist_add, size: 30),
+          icon: Icon(
+            Icons.playlist_add,
+            size: 30,
+          ),
           onPressed: () {},
         ),
         SizedBox(
