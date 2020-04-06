@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class PrincipalScreen extends StatefulWidget {
@@ -6,12 +7,35 @@ class PrincipalScreen extends StatefulWidget {
 }
 
 class _PrincipalScreenState extends State<PrincipalScreen> {
+
+
+  bool _dark;
+
+  @override
+  void initState() { 
+    super.initState();
+    _dark = false;
+  }
+
+  Brightness _getBrightness() {
+     return _dark ? Brightness.dark : Brightness.light;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _myAppBar(),
-      drawer: _myDrawer(),
-      body: _myBody(),
+    return Theme(
+      isMaterialAppTheme: true,
+      data: ThemeData(
+        brightness: _getBrightness(),
+      ),
+      child: Scaffold(
+
+        backgroundColor: _dark ? Color(0xFF31353F) : Colors.grey.shade200,
+
+        appBar: _myAppBar(),
+        drawer: _myDrawer(),
+        body: _myBody(),
+      ),
     );
   }
 
@@ -169,6 +193,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
 
   Widget _myDrawer() {
     return Drawer(
+      
       child: ListView(
         children: <Widget>[
           _headDrawer(),
@@ -181,8 +206,8 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
 
   Widget _body2Drawer() {
     return Container(
-      // height: 30,
-      // color: Colors.red,
+      width: double.infinity,
+      // color: _dark ? Color(0xFF1C2941) : Colors.grey.shade200,
       child: Column(
         children: <Widget>[
           _partBody2(Icons.people_outline, "Nuevo grupo"),
@@ -203,7 +228,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
   Widget _partBody2(IconData icono, String titulo) {
     var argumentos = {
       "titulo": " ",
-      // "dato2": 85,
+      "themeTELEGRAM": true,
       // "dato3": 1,
     };
 
@@ -211,6 +236,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
       onTap: () {
         print("pessed ${titulo}");
         argumentos['titulo'] = titulo;
+        argumentos['themeTELEGRAM'] = _dark;
 
         switch (titulo) {
           case "Nuevo grupo":
@@ -260,7 +286,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
             children: <Widget>[
               Icon(
                 icono,
-                color: Colors.black38,
+                color: _dark ?  Colors.white54 :Colors.black54,//_dark ? Color(0xFF1C2941) : Colors.black38,//Colors.grey.shade200,
                 size: 28,
               ),
               SizedBox(
@@ -269,7 +295,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
               Text(
                 titulo,
                 style: TextStyle(
-                  color: Colors.black54,
+                  color: _dark ?  Colors.grey.shade200 :Colors.black54,//Colors.grey.shade200,Colors.black54,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -308,12 +334,21 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
         ),
       ),
       otherAccountsPictures: <Widget>[
-        Container(
-          child: Icon(Icons.brightness_2, color: Colors.white),
+        InkWell(
+          onTap: (){
+
+            setState(() {
+                  _dark = !_dark;
+                });
+
+          },
+          child: Container(
+            child: Icon(Icons.brightness_2, color: Colors.white),
+          ),
         ),
       ],
       decoration: BoxDecoration(
-        color: Color(0xFF0088CC),
+        color:  _dark ? Color(0xFF434E69) : Color(0xFF0088CC),
       ),
     );
   }
@@ -322,9 +357,13 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
 
   Widget _myAppBar() {
     return AppBar(
-      title: Text("Telegram"),
+
+      brightness: _getBrightness(),
+      // iconTheme: IconThemeData(color: _dark ? Colors.white : Colors.black),
+
+      title: Text("Telegram",style: TextStyle(color: Colors.white),),
       elevation: 2,
-      backgroundColor: Color(0xFF0088CC),
+      backgroundColor: _dark ? Color(0xFF434E69) : Color(0xFF0088CC),
       actions: <Widget>[
         IconButton(
           icon: Icon(

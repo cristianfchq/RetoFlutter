@@ -6,12 +6,42 @@ class ScreenNuevoGrupo extends StatefulWidget {
 }
 
 class _ScreenNuevoGrupoState extends State<ScreenNuevoGrupo> {
+
+  bool _dark;
+
+  // @override
+  // void initState() { 
+  //   super.initState();
+  //   _dark = false;
+  // }
+
+  Brightness _getBrightness() {
+     return _dark ? Brightness.dark : Brightness.light;
+  }
+
   @override
   Widget build(BuildContext context) {
     final Map argumentos = ModalRoute.of(context).settings.arguments;
-    return Scaffold(
-      appBar: _myAppBar(argumentos['titulo']),
-      body: _myBody(),
+    bool _darkRecive = argumentos['themeTELEGRAM'];
+
+    setState(() {
+                  _dark = _darkRecive;
+                });
+
+    return Theme(
+
+      isMaterialAppTheme: true,
+      data: ThemeData(
+        brightness: _getBrightness(),
+      ),
+
+      child: Scaffold(
+
+        backgroundColor: _dark ? Color(0xFF31353F) : Colors.grey.shade200,
+
+        appBar: _myAppBar(argumentos['titulo']),
+        body: _myBody(),
+      ),
     );
   }
 
@@ -186,7 +216,7 @@ class _ScreenNuevoGrupoState extends State<ScreenNuevoGrupo> {
                 ),
                 Text(
                   mensaje,
-                  style: TextStyle(color: Colors.black54),
+                  style: TextStyle(color: _dark ?  Colors.white54 :Colors.black54,),
                 ),
               ],
             ),
@@ -207,7 +237,7 @@ class _ScreenNuevoGrupoState extends State<ScreenNuevoGrupo> {
   Widget _myAppBar(String titulo) {
     return AppBar(
       elevation: 0.0,
-      backgroundColor: Color(0xFF0088CC),
+      backgroundColor: _dark ? Color(0xFF434E69) : Color(0xFF0088CC),//Color(0xFF0088CC),
       centerTitle: true,
       actions: <Widget>[
         _miActionMenu(MediaQuery.of(context).size.width, titulo),
