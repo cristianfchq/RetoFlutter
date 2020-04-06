@@ -15,6 +15,8 @@ class _ScreenNuevoChatSecretoState extends State<ScreenNuevoChatSecreto> {
     );
   }
 
+//! Lista de contactos de cuerpo
+
   Widget _myBody() {
     return Container(
       // width: double.infinity,

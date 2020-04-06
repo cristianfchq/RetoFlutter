@@ -222,6 +222,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
             break;
 
           case "Nuevo canal":
+            Navigator.of(context).pushNamed("nuevoCanal", arguments: argumentos);
             break;
 
           case "Contactos":
