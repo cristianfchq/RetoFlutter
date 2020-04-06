@@ -226,6 +226,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
             break;
 
           case "Contactos":
+            Navigator.of(context).pushNamed("contactos", arguments: argumentos);
             break;
 
           case "Llamadas":
