@@ -6,12 +6,36 @@ class ScreenNuevoCanal extends StatefulWidget {
 }
 
 class _ScreenNuevoCanalState extends State<ScreenNuevoCanal> {
+  bool _dark;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _dark = false;
+  // }
+
+  Brightness _getBrightness() {
+    return _dark ? Brightness.dark : Brightness.light;
+  }
+
   @override
   Widget build(BuildContext context) {
     final Map argumentos = ModalRoute.of(context).settings.arguments;
-    return Scaffold(
-      appBar: _myAppBar(argumentos['titulo']),
-      body: _myBody(),
+    bool _darkRecive = argumentos['themeTELEGRAM'];
+
+    setState(() {
+      _dark = _darkRecive;
+    });
+
+    return Theme(
+      isMaterialAppTheme: true,
+      data: ThemeData(
+        brightness: _getBrightness(),
+      ),
+      child: Scaffold(
+        appBar: _myAppBar(argumentos['titulo']),
+        body: _myBody(),
+      ),
     );
   }
 
@@ -44,7 +68,13 @@ class _ScreenNuevoCanalState extends State<ScreenNuevoCanal> {
             SizedBox(
               height: 20,
             ),
-            Text("Puedes poner una descripción para tu canal", style: TextStyle(color: Colors.black87, fontSize: 14),),
+            Text(
+              "Puedes poner una descripción para tu canal",
+              style: TextStyle(
+                color: _dark ?  Colors.white54 :Colors.black87,//Colors.black87,
+                fontSize: 14,
+              ),
+            ),
           ],
         ),
       ),
@@ -75,7 +105,11 @@ class _ScreenNuevoCanalState extends State<ScreenNuevoCanal> {
       width: 80,
       height: 80,
       child: CircleAvatar(
-        child: Icon(Icons.photo_camera, color: Colors.white, size: 30.0,),
+        child: Icon(
+          Icons.photo_camera,
+          color: Colors.white,
+          size: 30.0,
+        ),
         radius: 33.0,
         backgroundColor: Color(0xFF2277AA),
       ),
@@ -86,7 +120,8 @@ class _ScreenNuevoCanalState extends State<ScreenNuevoCanal> {
 
   Widget _myAppBar(String titulo) {
     return AppBar(
-      backgroundColor: Color(0xFF0088CC),
+      backgroundColor:
+          _dark ? Color(0xFF434E69) : Color(0xFF0088CC), //Color(0xFF0088CC),
       title: Text(titulo),
       actions: <Widget>[
         IconButton(
